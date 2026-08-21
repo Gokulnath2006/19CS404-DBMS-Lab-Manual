@@ -104,124 +104,192 @@ CREATE TABLE Table_Name (
 ```
 
 **Question 1**
---
--- Paste Question 1 here
-
+```
+Create a new table named products with the following specifications:
+product_id as INTEGER and primary key.
+product_name as TEXT and not NULL.
+list_price as DECIMAL (10, 2) and not NULL.
+discount as DECIMAL (10, 2) with a default value of 0 and not NULL.
+A CHECK constraint at the table level to ensure:
+list_price is greater than or equal to discount
+discount is greater than or equal to 0
+list_price is greater than or equal to 0
+```
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE products (product_id INTEGER PRIMARY KEY, product_name TEXT NOT NULL, list_price DECIMAL(10,2) Not NULL,discount DECIMAL(10,2) DEFAULT 0 NOT NULL,
+CHECK(list_price>=discount AND discount>=0 AND list_price>=0));
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1187" height="263" alt="image" src="https://github.com/user-attachments/assets/e25951a9-e310-4a6b-a13e-c1cc55707920" />
+
 
 **Question 2**
----
--- Paste Question 2 here
+```
+Create a table named Invoices with the following constraints:
+InvoiceID as INTEGER should be the primary key.
+InvoiceDate as DATE.
+Amount as REAL should be greater than 0.
+DueDate as DATE should be greater than the InvoiceDate.
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
+```
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Invoices(InvoiceID INTEGER PRIMARY KEY,InvoiceDate DATE,Amount REAL, DueDate DATE, OrderID INTEGER
+CHECK(Amount>0 AND DueDate>InvoiceDate),FOREIGN KEY(OrderId) References Orders(OrderId));
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1184" height="259" alt="image" src="https://github.com/user-attachments/assets/8db5a8f6-b4ee-49c0-85e0-092571fd57a2" />
+
 
 **Question 3**
----
--- Paste Question 3 here
+```
+In the Employee table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+
+EmployeeID  Name          Position    Department  Salary
+----------  ------------  ----------  ----------  ----------
+5           George Clark  Consultant
+7           Noah Davis    Manager     HR          60000
+8           Ava Miller    Consultant  IT
+```
 
 ```sql
--- Paste your SQL code below for Question 3
+INSERT INTO Employee
+VALUES(5,"George Clark","Consultant",null,null);
+INSERT INTO Employee
+VALUES(7,"Noah Davis","Manager","HR",60000);
+INSERT INTO Employee
+VALUES(8,"Ava Miller","Consultant","IT",null);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1177" height="264" alt="image" src="https://github.com/user-attachments/assets/3b25885b-3ca5-499a-92cc-510c22383630" />
 
 **Question 4**
----
--- Paste Question 4 here
+```
+Insert a book with ISBN 978-1234567890, Title Data Science Essentials, Author Jane Doe, Publisher TechBooks, and Year 2024 into the Books table.
+```
 
 ```sql
--- Paste your SQL code below for Question 4
+INSERT INTO Books
+VALUES("978-1234567890","Data Science Essentials","Jane Doe","TechBooks",2024);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1250" height="187" alt="image" src="https://github.com/user-attachments/assets/3e976624-8bfe-4c5f-9070-594f93a52945" />
 
 **Question 5**
----
--- Paste Question 5 here
+```
+Create a new table named contacts with the following specifications:
+contact_id as INTEGER and primary key.
+first_name as TEXT and not NULL.
+last_name as TEXT and not NULL.
+email as TEXT.
+phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+```
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE contacts(contact_id INTEGER PRIMARY KEY,first_name TEXT NOT NULL,last_name TEXT NOT NULL,email TEXT,phone TEXT NOT NULL ,
+CHECK(LENGTH(phone)>=10));
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1216" height="292" alt="image" src="https://github.com/user-attachments/assets/a26c7cff-f7cd-4d5d-bdf4-3528ef25907f" />
 
 **Question 6**
----
--- Paste Question 6 here
+```
+Create a table named Products with the following constraints:
+ProductID as INTEGER should be the primary key.
+ProductName as TEXT should be unique and not NULL.
+Price as REAL should be greater than 0.
+StockQuantity as INTEGER should be non-negative.
+```
 
 ```sql
--- Paste your SQL code below for Question 6
+CREATE TABLE Products(ProductID INTEGER PRIMARY KEY,ProductName TEXT UNIQUE NOT NULL,Price REAL,StockQuantity INTEGER,
+CHECK(Price>=0 AND StockQuantity>=0));
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1180" height="253" alt="image" src="https://github.com/user-attachments/assets/6f3570d4-83df-4fb2-b757-0c21724037dc" />
 
 **Question 7**
----
--- Paste Question 7 here
+```
+Write a SQL query to Add a new ParentsNumber column  as number and Adhar_Number as Number in the Student_details table.
+```
 
 ```sql
--- Paste your SQL code below for Question 7
+ALTER TABLE Student_details
+ADD COLUMN ParentsNumber number;
+ALTER TABLE Student_details
+ADD COLUMN Adhar_Number number;
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1216" height="336" alt="image" src="https://github.com/user-attachments/assets/e1b4b5b7-ec86-45b7-8211-555f7442638d" />
 
 **Question 8**
----
--- Paste Question 8 here
+```
+Insert all students from Archived_students table into the Student_details table.
+
+cid         name        type        notnull     dflt_value  pk
+----------  ----------  ----------  ----------  ----------  ----------
+0           RollNo      INT           0                       1
+1           Name        VARCHAR(100)  0                       0
+2           Gender      VARCHAR(10)   0                       0
+3           Subject     VARCHAR(50)   0                       0
+4           MARKS       INT           0                       0
+```
 
 ```sql
--- Paste your SQL code below for Question 8
+insert into student_details
+Select*from  archived_students;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1218" height="242" alt="image" src="https://github.com/user-attachments/assets/325a5a1e-2e02-4740-9cfc-2c1748c4c073" />
 
 **Question 9**
----
--- Paste Question 9 here
+```
+Create a table named Products with the following constraints:
+
+ProductID should be the primary key.
+ProductName should be NOT NULL.
+Price is of real datatype and should be greater than 0.
+Stock is of integer datatype and should be greater than or equal to 0.
+```
 
 ```sql
--- Paste your SQL code below for Question 9
+CREATE TABLE Products(ProductID PRIMARY KEY,ProductName NOT NULL,Price REAL,Stock INTEGER,
+CHECK(Price>=0 AND Stock>=0));
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1216" height="225" alt="image" src="https://github.com/user-attachments/assets/bb8b3592-e73b-49f5-beef-f8ebe9d2399c" />
 
 **Question 10**
----
--- Paste Question 10 here
+```
+Write an SQL query to add a new column email of type TEXT to the Student_details table, and ensure that this column cannot contain NULL values and make default value as 'Invalid'
+```
 
 ```sql
--- Paste your SQL code below for Question 10
+ALTER TABLE Student_details ADD COLUMN email TEXT NOT NULL DEFAULT 'Invalid';
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1190" height="210" alt="image" src="https://github.com/user-attachments/assets/15e2d1be-8c2d-40de-9f46-a68ec0f8577f" />
+
 
 
 ## RESULT
